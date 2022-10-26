@@ -1,3 +1,4 @@
+#https://unidebhu-my.sharepoint.com/personal/olah_norbert_inf_unideb_hu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Folah%5Fnorbert%5Finf%5Funideb%5Fhu%2FDocuments%2Fkali%2Dlinux%2D2021%2E3%2Dvirtualbox%2Damd64%2Eova&parent=%2Fpersonal%2Folah%5Fnorbert%5Finf%5Funideb%5Fhu%2FDocuments&ga=1
 # #@total_ordering
 # class Person:
 #     id: str
