@@ -1,0 +1,29 @@
+model:
+	sets:
+		munkasok /Jozsef, Bela, Gyula, Istvan, Janos/;
+		varosok /Bp, Db, Nyh, Pecs, Vac/;
+		parok(munkasok, varosok): ktg, x;
+	endsets
+	
+		min = @sum(parok: ktg*x);
+
+		@for(munkasok (i):
+			@sum(varosok (j): x(i,j))=1
+		);
+
+		@for(varosok (j):
+			@sum(munkasok (i): x(i,j))=1
+		);
+
+		@for(parok:
+			@bin(x)
+		);
+	
+	data:
+		ktg=	2 7 8 3 1
+			4 1 5 9 10
+			6 5 20 2 4
+			4 2 8 10 3
+			9 3 8 3 5;
+	enddata
+end
