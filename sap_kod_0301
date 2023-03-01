@@ -1,0 +1,180 @@
+*&---------------------------------------------------------------------*
+*& Report  ZEMPLISTSZ334
+*&
+*&---------------------------------------------------------------------*
+*&
+*&
+*&---------------------------------------------------------------------*
+
+REPORT  zemplistsz334 LINE-SIZE 150.
+TABLES zempsz334. "TÁBLA DEKLARÁLÁS
+
+**4. FELADAT
+*DATA prem TYPE p DECIMALS 2.
+*
+*SELECT * FROM zempsz334.
+*  IF zempsz334-bonus >= 4.
+*    prem = zempsz334-bonus * '1.22'.
+*  ELSE.
+*    prem = zempsz334-bonus * '1.44'.
+*  ENDIF.
+*  WRITE: / zempsz334-empid,zempsz334-sname,'PRÉMIUM:',prem.
+*ENDSELECT.
+
+
+
+*"ARITMETIKAI MŰVELETEK
+*DATA EGESZ TYPE I.
+*DATA TORT TYPE P DECIMALS 2.
+*EGESZ = 12.
+*TORT = '23.6'.
+*
+*"ÖSSZEADÁS
+*EGESZ = EGESZ + 3.
+*ADD 3 TO EGESZ.
+*
+*"KIVONÁS
+*TORT = TORT - 1.
+*SUBTRACT 1 FROM TORT.
+*
+*"SZORZÁS
+*EGESZ = EGESZ * TORT.
+*MULTIPLY EGESZ BY TORT.
+*
+*"OSZTASOK:
+*"STANDARD OSZTAS
+*WRITE 'STANDARD OSZTAS:'.
+*WRITE TORT.
+*TORT = TORT / 3. "MIVEL BALRA TÖRT VAN, AZ EREDMÉNY IS TÖRT LESZ
+*WRITE: '/ 3 = ' , TORT.
+*ULINE.
+*
+*"EGÉSZ OSZTÁS
+*EGESZ = 13.
+*WRITE 'EGESZ OSZTAS:'.
+*WRITE EGESZ.
+*EGESZ = EGESZ DIV 5.
+*WRITE: 'DIV 5 = ' , EGESZ.
+*ULINE.
+*
+*"MARADEKOS OSZTÁS
+*EGESZ = 13.
+*WRITE 'MARADEKOS OSZTAS:'.
+*WRITE EGESZ.
+*EGESZ = EGESZ MOD 5.
+*WRITE: 'MOD 5 = ' , EGESZ.
+*ULINE.
+*
+*
+*"EGÉSZ OSZTÁS TÖRT SZÁMOKKAL
+*TORT = '5.45'.
+*WRITE 'EGESZ OSZTAS TÖRTEKKEL:'.
+*WRITE TORT.
+*TORT = TORT DIV '1.48'.
+*WRITE: 'DIV 1.48 = ' , TORT.
+*ULINE.
+*
+*"MARADEKOS OSZTÁS TÖRT SZÁMOKKAL
+*TORT = '5.45'.
+*WRITE 'MARADEKOS OSZTAS TÖRTEKKEL:'.
+*WRITE TORT.
+*TORT = TORT MOD '1.48'.
+*WRITE: 'MOD 1.48 = ' , TORT.
+*ULINE.
+
+
+
+*"3. FELADAT, 4+ BONUSZOSOK CSAK
+*DATA db TYPE i VALUE 0.
+*CONSTANTS LIMIT LIKE ZEMPSZ334-BONUS VALUE 4. "ENNEK A TIPUSÁT ADJA A LIMIT VÁLTOZÓNAK
+*WRITE 'ALKALMAZOTT LISTA:'.
+*ULINE.
+*
+*SELECT * FROM zempsz334.
+*  IF zempsz334-bonus >= LIMIT.
+*    WRITE / zempsz334-empid.
+*    WRITE: zempsz334-sname,',',zempsz334-fname.
+*    ADD 1 TO db.
+*  ENDIF.
+*ENDSELECT.
+*
+*ULINE.
+*WRITE: 'ÖSSZESEN: ' ,db,' DB 4+ BONUSZOS ALKALMAZOTT' .
+
+
+*"2. FELADAT
+*DATA DB TYPE I VALUE 0.
+*WRITE 'ALKALMAZOTT LISTA:'.
+*ULINE.
+*
+*SELECT * FROM zempsz334.
+*  WRITE / zempsz334-EMPID.
+*  WRITE: zempsz334-SNAME,',',ZEMPSZ334-FNAME.
+*  ADD 1 TO DB.
+*ENDSELECT.
+*
+*ULINE.
+*WRITE: 'ÖSSZESEN: ' ,DB,' DB ALKALMAZOTT' .
+
+
+
+*"VÁLTOZÓK
+*DATA MYINT TYPE i. "EGÉSZ TÍPUS DEKLARÁLÁS
+*DATA MYDEC TYPE p DECIMALS 2. "PACKED DECIMAL , DECIMALS NÉLKÜL EGÉSZRE KEREKÍT
+*DATA MYINT2 TYPE I VALUE 0. "RÖGTÖN ÉRTÉKET KAP, 0 KEZDŐÉRTÉK
+*CONSTANTS MYCONST TYPE I VALUE 100. "KONSTANS, KELL NEKI KEZDŐÉRTÉK
+*
+*"ÉRTÉKADÁSOK
+*MYINT = 5. "SZÓKÖZÖK KELLENEK
+*MYDEC = '4.2'. "NEM EGÉSZ SZÁMNÁL APOSZTRÓFOK
+*MYINT = MYDEC + 2. "EZ 6 , SZÓKÖZÖK KELLENEK
+*MYDEC = MYDEC + 2. "EZ 6.2
+*
+*"ÉRTÉKNÖVERLÉS ÉS CSÖKKENTÉS
+*ADD 1 TO MYINT. "MYINT = MYINT + 1.
+*SUBTRACT 2 FROM MYINT. "MYINT = MYINT - 2.
+*
+*"KIIRATÁSOK
+*WRITE / MYINT.
+*WRITE / MYDEC.
+*WRITE / MYCONST.
+*SKIP 3.
+*ULINE.
+
+
+
+*"1. FELADAT
+*WRITE 'SURNAME OF EMPLOYEES:'.
+*ULINE.
+*SELECT * FROM zempsz334.
+*  WRITE / zempsz334-sname.
+*ENDSELECT.
+*SKIP 2.
+*WRITE / 'FNAMES OF EMPLOYEES:'.
+*ULINE.
+*SELECT * FROM zempsz334.
+*  WRITE: zempsz334-fname.
+*  WRITE ','.
+*ENDSELECT.
+*ULINE.
+
+
+*SELECT * FROM zempsz334.
+*  WRITE: / zempsz334-empid,zempsz334-sname,
+*           zempsz334-fname,zempsz334-dob.
+*ENDSELECT.
+
+
+*SELECT * FROM zempsz334.
+*  WRITE / zempsz334-sname. "ÚJ SORBAN KEZDI A REKORDOT -> /
+*  WRITE zempsz334-fname.
+*  ULINE. "ALÁHÚZÁS
+*  SKIP 1. "SKIP N. -> N DB SORT HAGY KI
+*ENDSELECT.
+
+
+*"TÁBLA TARTALMA SORTÖRÉS
+*SELECT * from zempsz334.
+* WRITE / ZEMPSZ334-sname. "ÚJ SORBAN KEZDI A REKORDOT -> /
+* WRITE ZEMPSZ334-fname.
+*ENDSELECT.
