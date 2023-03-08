@@ -9,6 +9,50 @@
 REPORT  zemplistsz334 LINE-SIZE 150.
 TABLES zempsz334. "TÁBLA DEKLARÁLÁS
 
+
+
+*2. FELADAT, 5-RE KEREKITETT
+DATA: SAL TYPE I, SALSUM TYPE I VALUE 0, Y TYPE I.
+
+SELECT * FROM zempsz334.
+  IF zempsz334-bonus <= 5.
+    SAL = zempsz334-BONUS * 2500 / 12.
+  ELSE.
+    SAL = zempsz334-BONUS * 3000 / 12.
+  ENDIF.
+ 
+  Y = SAL MOD 5.
+  IF Y <= 2.
+    SAL = SAL - Y.
+  ELSE.
+    SAL = SAL + ( 5 - Y ).
+  ENDIF.
+  
+  write: / zempsz334-empid,zempsz334-sname,' SAL= ',SAL.
+  SALSUM = SALSUM + SAL.
+ENDSELECT.
+
+ULINE.
+WRITE: / 'TOTAL SAL= ',SALSUM.
+
+
+
+**1. FELADAT
+*DATA: SZNAPOK TYPE I, HETEK TYPE I, NAPOK TYPE I.
+*
+*write 'Alkalmazott dayoff lista'.
+*ULINE.
+*SELECT * FROM zempsz334.
+*  SZNAPOK = zempsz334-BONUS * 6.
+*  HETEK = SZNAPOK DIV 7.
+*  NAPOK = SZNAPOK MOD 7.
+*  write: / zempsz334-empid,zempsz334-sname,' sznapok= ',sznapok,', ami ',hetek,' hét és ',napok,' nap.'.
+*ENDSELECT.
+
+*03.08
+*-----------------------------------------------------------------------------------------------
+*03.01
+
 **4. FELADAT
 *DATA prem TYPE p DECIMALS 2.
 *
